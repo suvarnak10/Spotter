@@ -30,7 +30,6 @@ driver = webdriver.Chrome(options = options)  # options=options)
 
 
 
-
 # make sure that chrome window is hidden
 
 
