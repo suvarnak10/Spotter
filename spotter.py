@@ -73,7 +73,6 @@ def find_similar_business(typ, city='', lato='', lono='', count=10):
         lon = lon.split('!')[0]
         simbus[name] = [lat, lon, link]
 
-suvaenb mn
 
     for j in simbus:
         try:
