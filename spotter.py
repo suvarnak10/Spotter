@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotInteractableException
 from tqdm import tqdm_notebook as tqdmn
 import pandas as pd
@@ -16,17 +17,12 @@ import math
 
 
 from selenium import webdriver
-# Make sure to supply the path to where you put the chromedriver.exe file. Use \\ instead of \ :
 
-
-# options = webdriver.ChromeOptions()
-# options.add_argument("--headless=new")
 options = webdriver.ChromeOptions()
 options.add_argument("--headless=new")
 
-
 driver = webdriver.Chrome(options=options)  # options=options)
-
+wait = WebDriverWait(driver, timeout=6)
 
 def distance(lat1, lon1, lat2, lon2):
     # Radius of the Earth in kilometers
@@ -50,6 +46,8 @@ def distance(lat1, lon1, lat2, lon2):
 
     return round(distance_km, 3)
 
+# input_list is list of score each location got.
+# rank the locations based on that score in descending order.
 def generate_rank(input_list):
     l = len(input_list)
     newl = input_list.copy()
@@ -60,8 +58,10 @@ def generate_rank(input_list):
 def find_similar_business(typ, city='', lato='', lono='', count=10):
     if city != '':
         city = '+in+'+city
+
     if lato == '' or lono == '':
         url = 'https://www.google.com/maps/search/' + typ + city
+        
     else:
         url = 'https://www.google.com/maps/search/' + \
             typ + city + '/@' + lato + ',' + lono
@@ -72,9 +72,11 @@ def find_similar_business(typ, city='', lato='', lono='', count=10):
     # Opening the search URL. You'll notice a chrome window opening :
     driver.get(url)
 
-    time.sleep(3)
+    wait.until(lambda x: x.find_element(By.CLASS_NAME, "hfpxzc"))
+
     shops = driver.find_elements(By.CLASS_NAME, "hfpxzc")
 
+# Scraping details from the map page by attribute names
     while len(shops) < count:       # should be more, like 20
         shops = driver.find_elements(By.CLASS_NAME, "hfpxzc")
         last_shop = shops[-1]
@@ -83,7 +85,7 @@ def find_similar_business(typ, city='', lato='', lono='', count=10):
 
     for i in shops:
         name = i.get_attribute("aria-label").strip()
-        simbus[name] = []
+        simbus[name] = []       # similar business dictionary
         link = i.get_attribute('href')
         lat = link[link.index('!3d')+3:link.index('!3d')+13]
         lat = lat.split('!')[0]
@@ -99,6 +101,7 @@ def find_similar_business(typ, city='', lato='', lono='', count=10):
 
             # print(simbus[j][0],simbus[j][1])
 
+            # get the rating of each shops
             rating = driver.find_element(
                 By.XPATH, "//*[@class='F7nice ']/span/span").text
             # print(rating)
@@ -138,7 +141,7 @@ locations = [{'lat': 12.063, 'lng': 76.731}, {
     'lat': 18.932, 'lng': 81.897}]
 
 
-def spotter(typ, city, locations, count=5):
+def spotter(typ, city, locations, count=20):
     lato = 0
     lono = 0
 
@@ -160,9 +163,14 @@ def spotter(typ, city, locations, count=5):
 
     # get the similar businesses in the area
     similar_businesses = find_similar_business(
-        typ=typ, city=city, lato=str(lato), lono=str(lono), count=count)
+        typ=typ, 
+        city=city, 
+        lato=str(lato), 
+        lono=str(lono), 
+        count=count
+        )
 
-    # Iterate through each dictionary in the location list
+    # Iterate through each dictionary in the locations list
     for coord in locations:
         weighted_rank = 0
         # Get the coordinates from the current dictionary
@@ -193,7 +201,7 @@ def spotter(typ, city, locations, count=5):
 # print(spotter(typ='Restaurant', city='Koduvally', locations=locations))
 
 
-# print(spotter(typ='Restaurant', city='Kochi', locations=locations))
+print(spotter(typ='Restaurant', city='Kochi', locations=locations, count=5))
 
 
 app = Flask(__name__)
