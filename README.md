@@ -1,6 +1,15 @@
 # Spotter App for Business Location Ranking
 
-The Spotter App is a tool that helps entrepreneurs and business owners evaluate potential business locations. It collects business details through a form, such as business name, type, location, target customers, and company scale. Upon submission, users can choose specific locations on a Leaflet map where they plan to start their business. The backend of the app then provides ranked locations based on sustainable factors, including nearby competitors' ratings and the number of ratings, using the Selenium package in Python with Flask. The frontend is built with React.js.
+The Spotter App is a tool that helps entrepreneurs and business owners evaluate potential business locations. It collects business details through a form, such as business name, type, location, target customers, and company scale. Upon submission, users can choose specific locations on a Leaflet map where they plan to start their business. The backend of the app then provides ranked locations based on sustainable factors, including nearby competitors' ratings and the number of ratings, using the Selenium package in Python with Flask. The frontend is built with React.js.<br><br>
+The main idea is to calculate a weighted ranking score for each location, considering factors such as competitor ratings, number of ratings, and distance. Here's a breakdown of the process:
+The details of near by competitors their rating , distance and number of rating are scarpped from Google maps using selenium package.This obtained details are then used to rank for the each location based on the formula 
+
+
+$$Score = \sum_{} \left( Rating \times number of ratings \right) \div distance$$
+The lower the score, the higher the location is Ranked.
+
+
+
 
 ## Table of Contents
 
