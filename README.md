@@ -1,55 +1,103 @@
 # Spotter App for Business Location Ranking
 
-The Spotter App is a web application that helps users planning to start a business by providing them with ranked location suggestions based on sustainable factors such as proximity to competitors and competitor ratings. Users can fill out a form with details about their business, including business name, type, location, target customers, and company scale. The app then allows users to select specific locations on a map, and the backend utilizes the Selenium package in Python, along with Flask, to calculate and display ranked location suggestions.
+The Spotter App is a tool that helps entrepreneurs and business owners evaluate potential business locations. It collects business details through a form, such as business name, type, location, target customers, and company scale. Upon submission, users can choose specific locations on a Leaflet map where they plan to start their business. The backend of the app then provides ranked locations based on sustainable factors, including nearby competitors' ratings and the number of ratings, using the Selenium package in Python with Flask. The frontend is built with React.js.
 
-## Features
+## Table of Contents
 
-- **Form Submission**: Users can fill out a form with business details, including name, type, location, target customers, and company scale.
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Running the App](#running-the-app)
+  - [Frontend (React.js)](#frontend-reactjs)
+  - [Backend (Flask)](#backend-flask)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
 
-- **Map Interaction**: The app provides a Leaflet map interface that allows users to select specific locations where they are considering starting their business.
+## Getting Started
 
-- **Ranking Algorithm**: The backend calculates a ranking for each selected location based on factors such as proximity to competitors, competitor ratings, and the number of ratings.
+### Prerequisites
 
+To run the Spotter App, you need to have the following software installed on your machine:
 
-## Setup Instructions
+- Node.js and npm (Node Package Manager)
+- Python 3.x
+- Chrome WebDriver (for Selenium)
 
-1. **Prerequisites**: Make sure you have Python and Flask installed on your machine.
+### Installation
 
-2. **Clone the Repository**: Clone this repository to your local machine using the following command:
-   
-   ```
+1. Clone this repository to your local machine:
+
+   ```bash
    git clone https://github.com/your-username/spotter-app.git
-   ```
-
-3. **Install Dependencies**: Navigate to the project directory and install the required dependencies:
-
-   ```
    cd spotter-app
+   ```
+
+2. Install the required dependencies for the frontend:
+
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+3. Install the required dependencies for the backend:
+
+   ```bash
+   cd backend
    pip install -r requirements.txt
    ```
 
-4. **ChromeDriver Setup**: Download the ChromeDriver executable and specify its path in the Python code where indicated. You can download ChromeDriver from the official website: https://sites.google.com/chromium.org/driver/
+## Running the App
 
-5. **Run the App**: Start the Flask app by running the following command:
+### Frontend (React.js)
 
+1. Navigate to the `frontend` directory:
+
+   ```bash
+   cd frontend
    ```
+
+2. Start the React app:
+
+   ```bash
+   npm start
+   ```
+
+   This will run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### Backend (Flask)
+
+1. Open a new terminal and navigate to the `backend` directory:
+
+   ```bash
+   cd backend
+   ```
+
+2. Start the Flask app:
+
+   ```bash
    python app.py
    ```
 
-6. **Access the App**: Open your web browser and go to http://localhost:5000 to access the Spotter App.
+   The Flask app will run on [http://localhost:5000](http://localhost:5000).
 
 ## Usage
 
-1. **Home Page**: The app's home page provides an introduction to the Spotter App.
+1. Access the Spotter App in your web browser by going to [http://localhost:3000](http://localhost:3000).
 
-2. **Form Submission**: Navigate to the form page where you can provide details about your business. Fill out the form with information such as business name, type, location, target customers, and company scale. Once the form is submitted, you will be redirected to the map page.
+2. Fill out the form with your business details and choose specific locations on the map.
 
-3. **Map Interaction**: On the map page, use the Leaflet map to select specific locations where you are considering starting your business.
-
-4. **View Rankings**: After selecting locations on the map, the app will calculate and display rankings for each location based on proximity to competitors, competitor ratings, and the number of ratings.
+3. Submit the form to receive ranked locations based on sustainable factors.
 
 ## Contributing
 
-Contributions to the Spotter App are welcome! If you have any suggestions, bug fixes, or new features to propose, please feel free to open an issue or submit a pull request.
+We welcome contributions from the community! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
-Feel free to modify this README to suit your specific project details and formatting preferences. Make sure to update placeholders like `your-username` and provide accurate information about your project.
+## Acknowledgments
+
+- This project was inspired by the need for entrepreneurs to make informed decisions about their business locations.
+- Thanks to the open-source community for providing the tools and libraries that made this project possible.
+
+---
+
+Feel free to modify the README according to your specific project details. Make sure to update placeholders like `your-username` and provide accurate and relevant information about your project.
