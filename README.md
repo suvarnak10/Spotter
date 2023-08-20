@@ -52,10 +52,4 @@ The Spotter App is a web application that helps users planning to start a busine
 
 Contributions to the Spotter App are welcome! If you have any suggestions, bug fixes, or new features to propose, please feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 Feel free to modify this README to suit your specific project details and formatting preferences. Make sure to update placeholders like `your-username` and provide accurate information about your project.
