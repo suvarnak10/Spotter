@@ -10,7 +10,6 @@ The Spotter App is a web application that helps users planning to start a busine
 
 - **Ranking Algorithm**: The backend calculates a ranking for each selected location based on factors such as proximity to competitors, competitor ratings, and the number of ratings.
 
-- **Detailed Information**: The app displays detailed information about each selected location, including its ranking and relevant business information.
 
 ## Setup Instructions
 
@@ -48,8 +47,6 @@ The Spotter App is a web application that helps users planning to start a busine
 3. **Map Interaction**: On the map page, use the Leaflet map to select specific locations where you are considering starting your business.
 
 4. **View Rankings**: After selecting locations on the map, the app will calculate and display rankings for each location based on proximity to competitors, competitor ratings, and the number of ratings.
-
-5. **Detailed Information**: The app will provide detailed information about each selected location, including its ranking, and you can use this information to make informed decisions about where to start your business.
 
 ## Contributing
 
